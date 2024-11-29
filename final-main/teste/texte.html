@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrastar e Soltar com Retorno</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8e9d4;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .box {
+            min-width: 300px;
+            min-height: 200px;
+            background-color: #c1272d;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: start;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            border-radius: 8px;
+            padding: 10px;
+            box-sizing: border-box;
+            gap: 10px;
+        }
+
+        .box.drag-over {
+            background-color: #a10d1b;
+        }
+
+        .button {
+            background-color: #e3e3e3;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #ccc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #c1272d;
+            color: white;
+        }
+
+        .table-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .table-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: center;
+            color: #c1272d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="box1">
+            <button class="button" draggable="true" data-table="principal">Principal</button>
+            <button class="button" draggable="true" data-table="vermelho">Vermelho</button>
+            <button class="button" draggable="true" data-table="prata">Prata</button>
+            <button class="button" draggable="true" data-table="bicudo">Bicudo</button>
+            <button class="button" draggable="true" data-table="entrega">Entrega</button>
+        </div>
+        <div class="box" id="box2"></div>
+    </div>
+
+    <template id="principal">
+        <div class="table-container">
+            <div class="table-title">Tabela Principal</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Item A</td>
+                        <td>Descrição A</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="vermelho">
+        <div class="table-container">
+            <div class="table-title">Tabela Vermelho</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Produto</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>002</td>
+                        <td>Produto Vermelho</td>
+                        <td>R$25,00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="prata">
+        <div class="table-container">
+            <div class="table-title">Tabela Prata</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Categoria</th>
+                        <th>Unidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>003</td>
+                        <td>Prata</td>
+                        <td>UNI</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="bicudo">
+        <div class="table-container">
+            <div class="table-title">Tabela Bicudo</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>004</td>
+                        <td>Produto Bicudo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="entrega">
+        <div class="table-container">
+            <div class="table-title">Tabela Entrega</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ordem</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>005</td>
+                        <td>Entregue</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <script>
+        const box1 = document.getElementById('box1');
+        const box2 = document.getElementById('box2');
+        let draggedButton = null;
+
+        // Eventos de arrastar nos botões
+        document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('dragstart', (e) => {
+                draggedButton = e.target;
+            });
+        });
+
+        // Função para processar drop no box2
+        box2.addEventListener('dragover', (e) => e.preventDefault());
+        box2.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if (draggedButton && draggedButton.parentNode === box1) {
+                const tableId = draggedButton.getAttribute('data-table');
+                const template = document.getElementById(tableId);
+                if (template) {
+                    box2.appendChild(template.content.cloneNode(true));
+                    draggedButton.remove();
+                }
+            }
+        });
+
+        // Função para permitir voltar para box1
+        box1.addEventListener('dragover', (e) => e.preventDefault());
+        box1.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if (draggedButton && draggedButton.parentNode !== box1) {
+                box2.innerHTML = '';
+                box1.appendChild(draggedButton);
+            }
+        });
+    </script>
+</body>
+</html>

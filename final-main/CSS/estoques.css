@@ -1,0 +1,832 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    min-height:100vh;
+    background-color: #F7E6B5 ;
+
+}
+
+main{
+    padding: 20px;
+    z-index: 1;
+    padding-left: calc(82px + 20px);
+    position: fixed;
+}
+
+#sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url(../MIDIA/background_sb_02.jpg);
+    height: 100vh;
+    border-radius: 0px 18px 18px 0px;
+    position: relative;
+    transition: all .5s;
+    min-width: 82px;
+    z-index: 2;
+}
+#sidebar_content{
+    padding: 12px;
+}
+#logo{
+    border-radius: 0px 18px 0px 0px ;
+    background-color: #F2C97C    ;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+#flogo{
+    height: 70px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+#logo_infos{
+    display: flex;
+    flex-direction: column;
+}
+#logo_infos span:last-child{
+    color: #6b6b6b;
+    font-size: 12px;
+}
+#side_itens{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+
+}
+
+.side-item{
+    padding: 14px;
+    cursor: pointer;
+}
+.side-item.active{
+    background-color: #ffc800;
+}
+
+.side-item:hover:not(.active),
+#logout_btn:hover
+{
+    background-color: #ffc800b5;
+}
+.side-item a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a0a0a;
+}
+
+.side-item.active a {
+    color:#e3e9f7
+}
+.side-item a i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+#logout{
+    border-top: 1px solid;
+    padding: 12px;
+
+}
+#logout_btn{
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    display:flex;
+    gap: 20px;
+    align-items: center;
+    border-radius: 8px; 
+    text-align: start;
+    cursor: pointer;
+    background-color: transparent;
+} 
+#open_btn{
+    position: absolute;
+    top: 30px;
+    right: -10px;
+    background-color: orange;
+    color: #e3e9f7;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+
+}
+#open_btn_icon {
+    transition: transform .3s;
+}
+
+.open-sidebar #open_btn_icon {
+    transform: rotate(180deg);
+}
+p{
+    width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    transition: width .6s;
+    height: 0px;
+}
+.item-description{
+    width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    transition: width .6s;
+    height: 0px;
+}
+#sidebar.open-sidebar{
+    min-width: 15%;
+}
+
+#sidebar.open-sidebar   .item-escondido {
+    width: 150px;
+    height: auto;
+}
+
+#sidebar.open-sidebar  p {
+    width: 150px;
+    height: auto;
+}
+#sidebar.open-sidebar  span {
+    width: 150px;
+    height: auto;
+}
+
+#sidebar.open-sidebar .side-item a {
+    justify-content: flex-start;
+    gap: 14px;
+}
+
+.resto {
+    gap: 10px; /* Ajuste o espaço entre as palavras conforme necessário */
+}
+
+.kanban {
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
+    gap: 10px;
+}
+
+.column {
+    display: flex;
+    gap: 2cm; /* Espaçamento de 14 cm entre os itens */
+    background-color: rgb(180, 40, 40);
+    min-width: 200px;
+    border-radius: 5px;
+    height: 70px;
+    width: 1070px;
+    padding-bottom: 0px;
+    align-items: center;
+    padding-left: 180px;
+}
+
+.item {
+    background-color: #e3e9f7;
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center; /* Centraliza o texto */
+    padding-top: px;
+    padding-bottom: 10px;
+    
+}
+
+
+
+
+.retangulo-amarelo {
+
+    position: absolute;
+    right: 0px; /* Ajuste conforme necessário */
+    top: 19px; /* Ajuste conforme necessário */
+}
+/* Estilo para o formulário */
+#estoque-form {
+    position: fixed; /* Faz o formulário ficar fixo na tela */
+    background-color: #fff;
+    border: 2px solid #ff9500; /* Cor de borda dourada */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px;
+    width: 320px; /* Largura fixa */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidade */
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilo para os rótulos */
+#estoque-form label {
+    display: block; /* Força uma nova linha */
+    margin-bottom: 5px; /* Espaçamento inferior */
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo para os campos de entrada */
+#estoque-form input[type="text"],
+#estoque-form input[type="number"],
+#estoque-form select {
+    width: 100%; /* Ocupa toda a largura do contêiner */
+    padding: 10px;
+    margin-bottom: 15px; /* Espaçamento entre os campos */
+    border: 1px solid #ccc; /* Cor de borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 14px;
+    background-color: #f9f9f9; /* Fundo leve */
+    transition: border-color 0.3s;
+}
+
+/* Foco nos campos */
+#estoque-form input:focus,
+#estoque-form select:focus {
+    border-color: #ffc800; /* Destaque ao focar */
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 200, 0, 0.5); /* Efeito de brilho */
+}
+
+/* Estilo do botão */
+#estoque-form button[type="submit"] {
+    width: 100%; /* Ocupa toda a largura do formulário */
+    background-color: #ffc800;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover no botão */
+#estoque-form button[type="submit"]:hover {
+    background-color: #e0a700;
+}
+
+/* Estilo adicional para a seção de transferência */
+#transferencia-opcoes {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px dashed #ccc; /* Borda tracejada */
+    border-radius: 5px;
+    background-color: #fdf6e3; /* Fundo claro */
+}
+.quadrado-vermelho {
+   
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
+    gap: 10px;
+    display: flex;
+    gap: 2cm; /* Espaçamento de 14 cm entre os itens */
+    background-color: rgb(180, 40, 40);
+    min-width: 200px;
+    border-radius: 5px;
+    height: 700px;
+    width: 1070px;
+    padding-bottom: 0px;
+    align-items: center;
+    padding-left: 180px;
+
+}
+.quadrado-vermelho {
+    height: 30cm; /* Define a altura do quadrado vermelho */
+    display: flex; /* Permite alinhar o conteúdo */
+    align-items: center; /* Centraliza verticalmente o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo */
+    overflow: auto; /* Adiciona barras de rolagem, se necessário */
+}
+
+.tablela-column {
+    width: 100%; /* Ocupa toda a largura disponível */
+    height: auto; /* Ajusta dinamicamente a altura */
+    background-color: white; /* Fundo branco para a tabela */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    padding: 10px; /* Espaçamento interno */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+th {
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-transform: uppercase;
+}
+
+th[colspan] {
+    background-color: #dcdcdc;
+    font-weight: bold;
+    font-size: 16px;
+    color: #000;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    color: #333;
+    background-color: #fff;
+}
+
+tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+tr:hover td {
+    background-color: #f1f1f1;
+}
+
+#descrição {
+    font-weight: bold;
+    background-color: #e6e6e6;
+    text-align: left;
+    padding-left: 10px;
+}
+
+table tr th:first-child, table tr td:first-child {
+    text-align: left;
+    padding-left: 15px;
+}
+
+
+  
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    min-height:100vh;
+    background-color: #F7E6B5 ;
+
+}
+
+main{
+    padding: 20px;
+    z-index: 1;
+    padding-left: calc(82px + 20px);
+    position: fixed;
+}
+
+#sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url(../MIDIA/background_sb_02.jpg);
+    height: 100vh;
+    border-radius: 0px 18px 18px 0px;
+    position: relative;
+    transition: all .5s;
+    min-width: 82px;
+    z-index: 2;
+}
+#sidebar_content{
+    padding: 12px;
+}
+#logo{
+    border-radius: 0px 18px 0px 0px ;
+    background-color: #F2C97C    ;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+#flogo{
+    height: 70px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+#logo_infos{
+    display: flex;
+    flex-direction: column;
+}
+#logo_infos span:last-child{
+    color: #6b6b6b;
+    font-size: 12px;
+}
+#side_itens{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+
+}
+
+.side-item{
+    padding: 14px;
+    cursor: pointer;
+}
+.side-item.active{
+    background-color: #ffc800;
+}
+
+.side-item:hover:not(.active),
+#logout_btn:hover
+{
+    background-color: #ffc800b5;
+}
+.side-item a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a0a0a;
+}
+
+.side-item.active a {
+    color:#e3e9f7
+}
+.side-item a i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+#logout{
+    border-top: 1px solid;
+    padding: 12px;
+
+}
+#logout_btn{
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    display:flex;
+    gap: 20px;
+    align-items: center;
+    border-radius: 8px; 
+    text-align: start;
+    cursor: pointer;
+    background-color: transparent;
+} 
+#open_btn{
+    position: absolute;
+    top: 30px;
+    right: -10px;
+    background-color: orange;
+    color: #e3e9f7;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+
+}
+#open_btn_icon {
+    transition: transform .3s;
+}
+
+.open-sidebar #open_btn_icon {
+    transform: rotate(180deg);
+}
+p{
+    width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    transition: width .6s;
+    height: 0px;
+}
+.item-description{
+    width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    transition: width .6s;
+    height: 0px;
+}
+#sidebar.open-sidebar{
+    min-width: 15%;
+}
+
+#sidebar.open-sidebar   .item-escondido {
+    width: 150px;
+    height: auto;
+}
+
+#sidebar.open-sidebar  p {
+    width: 150px;
+    height: auto;
+}
+#sidebar.open-sidebar  span {
+    width: 150px;
+    height: auto;
+}
+
+#sidebar.open-sidebar .side-item a {
+    justify-content: flex-start;
+    gap: 14px;
+}
+
+.resto {
+    gap: 10px; /* Ajuste o espaço entre as palavras conforme necessário */
+}
+
+.kanban {
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
+    gap: 10px;
+}
+
+.column {
+    display: flex;
+    gap: 2cm; /* Espaçamento de 14 cm entre os itens */
+    background-color: rgb(180, 40, 40);
+    min-width: 200px;
+    border-radius: 5px;
+    height: 70px;
+    width: 1070px;
+    padding-bottom: 0px;
+    align-items: center;
+    padding-left: 180px;
+}
+
+.item {
+    background-color: #e3e9f7;
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center; /* Centraliza o texto */
+    padding-top: px;
+    padding-bottom: 10px;
+    
+}
+
+
+
+
+.retangulo-amarelo {
+
+    position: absolute;
+    right: 0px; /* Ajuste conforme necessário */
+    top: 19px; /* Ajuste conforme necessário */
+}
+/* Estilo para o formulário */
+#estoque-form {
+    position: fixed; /* Faz o formulário ficar fixo na tela */
+    background-color: #fff;
+    border: 2px solid #ff9500; /* Cor de borda dourada */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px;
+    width: 320px; /* Largura fixa */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidade */
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilo para os rótulos */
+#estoque-form label {
+    display: block; /* Força uma nova linha */
+    margin-bottom: 5px; /* Espaçamento inferior */
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo para os campos de entrada */
+#estoque-form input[type="text"],
+#estoque-form input[type="number"],
+#estoque-form select {
+    width: 100%; /* Ocupa toda a largura do contêiner */
+    padding: 10px;
+    margin-bottom: 15px; /* Espaçamento entre os campos */
+    border: 1px solid #ccc; /* Cor de borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 14px;
+    background-color: #f9f9f9; /* Fundo leve */
+    transition: border-color 0.3s;
+}
+
+/* Foco nos campos */
+#estoque-form input:focus,
+#estoque-form select:focus {
+    border-color: #ffc800; /* Destaque ao focar */
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 200, 0, 0.5); /* Efeito de brilho */
+}
+
+/* Estilo do botão */
+#estoque-form button[type="submit"] {
+    width: 100%; /* Ocupa toda a largura do formulário */
+    background-color: #ffc800;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover no botão */
+#estoque-form button[type="submit"]:hover {
+    background-color: #e0a700;
+}
+
+/* Estilo adicional para a seção de transferência */
+#transferencia-opcoes {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px dashed #ccc; /* Borda tracejada */
+    border-radius: 5px;
+    background-color: #fdf6e3; /* Fundo claro */
+}
+.quadrado-vermelho {
+   
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
+    gap: 10px;
+    display: flex;
+    gap: 2cm; /* Espaçamento de 14 cm entre os itens */
+    background-color: rgb(180, 40, 40);
+    min-width: 200px;
+    border-radius: 5px;
+    height: 700px;
+    width: 1070px;
+    padding-bottom: 0px;
+    align-items: center;
+    padding-left: 180px;
+
+}
+.quadrado-vermelho {
+    height: 30cm; /* Define a altura do quadrado vermelho */
+    display: flex; /* Permite alinhar o conteúdo */
+    align-items: center; /* Centraliza verticalmente o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo */
+    overflow: auto; /* Adiciona barras de rolagem, se necessário */
+}
+
+.tablela-column {
+    width: 100%; /* Ocupa toda a largura disponível */
+    height: auto; /* Ajusta dinamicamente a altura */
+    background-color: white; /* Fundo branco para a tabela */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    padding: 10px; /* Espaçamento interno */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+th {
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-transform: uppercase;
+}
+
+th[colspan] {
+    background-color: #dcdcdc;
+    font-weight: bold;
+    font-size: 16px;
+    color: #000;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    color: #333;
+    background-color: #fff;
+}
+
+tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+tr:hover td {
+    background-color: #f1f1f1;
+}
+
+#descrição {
+    font-weight: bold;
+    background-color: #e6e6e6;
+    text-align: left;
+    padding-left: 10px;
+}
+
+table tr th:first-child, table tr td:first-child {
+    text-align: left;
+    padding-left: 15px;
+}
+
+
+  
+
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.box {
+    min-width: 300px;
+    min-height: 200px;
+    background-color: #c1272d;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+.box.drag-over {
+    background-color: #a10d1b;
+}
+
+.button {
+    background-color: #e3e3e3;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #ccc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+table th {
+    background-color: #c1272d;
+    color: white;
+}
+
+.table-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.table-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+    color: #c1272d;
+}
+
