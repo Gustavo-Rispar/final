@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <title>Pag-Admin</title>
+    <style>
+
+#chartMaisVendidos, #chartMenosVendidos {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff, #f7f7f7);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+        @media (max-width: 768px) {
+            #chartMaisVendidos, #chartMenosVendidos {
+                max-width: 90%;
+                margin: 20px auto;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav id="sidebar">
+
+        <div id="sidebr_content">
+        
+        <div id="logo">
+            <img src="../MIDIA/Logo_transparente.png" id="flogo" alt="logofoto" >
+            
+            <p id="logo-infos">
+                
+                <span class="item-description">
+                    SABOR ETERNO
+                </span>
+<br>
+                <span class="item-description">
+                    Produtos coloniais
+                </span>
+            
+            </p>
+
+        </div>
+        
+        <ul id="side_items">
+            
+            <li class="side-item active">
+
+                <a href="admin.html">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span class="item-description">
+                        Home
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li class="side-item">
+
+                <a href="funcionarios.html">
+
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <span class="item-description">
+                        Funcionarios
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li class="side-item">
+
+                <a href="produtos.html">
+
+                    <i class="fa-solid fa-tags"></i>
+
+                    <span class="item-description">
+                        Produtos
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li class="side-item">
+
+                <a href="estoque.html">
+
+                    <i class="fa-solid fa-server"></i>
+
+                    <span class="item-description">
+                        Estoques
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li class="side-item">
+
+                <a href="#">
+
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                    <span class="item-description">
+                        Manutenções
+                    </span>
+
+                </a>
+
+            </li>
+            
+            
+            <li class="side-item">
+
+                <a href="#">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span class="item-description">
+                        Configurações
+                    </span>
+
+                </a>
+
+            </li>
+
+        </ul>
+
+        <button id="open_btn">
+            <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+        </button>
+        </div>
+
+        <div id="logout">
+            <button id="logout_btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span class="item-description">
+                    logout
+                </span>
+            </button>
+        </div>
+
+    </nav>
+    <main>
+    <div class="main-content">
+        <div class="container" id="pa">  
+            <h1>Pagamentos de Fornecedores</h1>    
+            <table>  
+                <thead>  
+                    <tr>  
+                        <th>Nome do Produto</th>  
+                        <th>Nome do Fornecedor</th>  
+                        <th>Quantidade</th>  
+                        <th>Valor</th>  
+                    </tr>  
+                </thead>  
+                <tbody>  
+                    <tr>  
+                        <td>Bacon / Costela / Lombo</td>  
+                        <td>laticinios brock</td>  
+                        <td>5,520</td> 
+                        <td>R$3.738</td>  
+                    </tr>  
+                    <tr>  
+                        <td>Linguiça Hungara</td>  
+                        <td>cunha</td>  
+                        <td>5,120</td>  
+                        <td>$2.789</td>  
+                    </tr>  
+                    <tr>  
+                        <td>Nata</td>  
+                        <td>laticinios brock</td>  
+                        <td>27</td>   
+                        <td>$6.142</td>  
+                    </tr>  
+                    <tr>  
+                        <td>Pão</td>  
+                        <td>pão villa nova</td>  
+                        <td>30</td>  
+                        <td>$ 242,00</td>  
+                    </tr>  
+                    <tr>  
+                        <td>Salsisha Viena</td>  
+                        <td>cunha</td>  
+                        <td>15</td>  
+                        <td>$ 615,00</td>  
+                    </tr>  
+                </tbody>  
+            </table>  
+        </div>
+            <div class="container" id="m">  
+                <h1>Manutenções necessesarias</h1>   
+                <table>  
+                    <thead>  
+                        <tr>  
+                            <th>acontecimento</th>  
+                            <th>nivel de urgencia</th>  
+                            <th>cargo</th>    
+                        </tr>  
+                    </thead>  
+                    <tbody>  
+                        <tr>  
+                            <td>goteiras no treiler</td>  
+                            <td>pouco urgente</td>  
+                            <td>Prata</td>    
+                        </tr>  
+                        <tr>  
+                            <td>freser vando agua</td>  
+                            <td>muito urgente</td>  
+                            <td>Vermelho</td>    
+                        </tr>  
+                        <tr>  
+                            <td>sem carregador para a balança</td>  
+                            <td>urgencia media</td>  
+                            <td>entrega</td>   
+                        </tr>
+                        <tr>  
+                            <td>luses do engate não estão funcionado</td>  
+                            <td>pouco urgente</td>  
+                            <td>bicudo</td>   
+                        </tr>  
+                    </tbody>  
+                </table>  
+            </div>  
+            <div class="container" id="f">  
+                <h1>Produtos Que Estão Com A Quantidade Abaixo Do Recomendado </h1>   
+                <table>  
+                    <thead>  
+                        <tr>  
+                            <th>Nome</th>  
+                            <th>Estoque</th>  
+                            <th>Quantidade</th>   
+                        </tr>  
+                    </thead>  
+                    <tbody>  
+                        <tr>  
+                            <td>Bacon / Costela / Lombo</td>  
+                            <td>Prata</td>  
+                            <td>5,520</td>   
+                        </tr>  
+                        <tr>  
+                            <td>Linguiça Hungara</td>  
+                            <td>Vermelho</td>  
+                            <td>1,120</td>   
+                        </tr>    
+                        <tr>  
+                            <td>Nata</td>  
+                            <td>entrega</td>  
+                            <td>7</td>   
+                        </tr>  
+                        <tr>  
+                            <td>Salsisha Viena</td>  
+                            <td>Bicudo</td>  
+                            <td>3</td>   
+                        </tr>  
+                    </tbody>  
+                </table>  
+            </div>  
+        </div>
+        
+              
+        
+        <div class="grafic">
+            <canvas id="chartMaisVendidos"></canvas>
+        
+            <canvas id="chartMenosVendidos"></canvas> 
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Gráfico de Produtos Mais Vendidos
+    const ctxMaisVendidos = document.getElementById('chartMaisVendidos').getContext('2d');
+    new Chart(ctxMaisVendidos, {
+        type: 'bar',
+        data: {
+            labels: ['Bacon', 'Linguiça', 'Nata', 'Pão', 'Salsicha'],
+            datasets: [{
+                label: 'Quantidade Vendida',
+                data: [1.200, 1.050, 0.900, 0.600, 0.030],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 99, 132, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 2,
+                borderRadius: 5,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: { size: 14, family: 'Arial' },
+                        color: '#555'
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Produtos Mais Vendidos',
+                    font: { size: 20, weight: 'bold', family: 'Arial' },
+                    color: '#333'
+                }
+            },
+            scales: {
+                x: { ticks: { color: '#555', font: { size: 12 } }, grid: { display: false } },
+                y: { beginAtZero: true, ticks: { color: '#555' }, grid: { color: 'rgba(200, 200, 200, 0.3)' } }
+            }
+        }
+    });
+
+    // Gráfico de Produtos Menos Vendidos
+    const ctxMenosVendidos = document.getElementById('chartMenosVendidos').getContext('2d');
+    new Chart(ctxMenosVendidos, {
+        type: 'doughnut', // Usando gráfico de rosca para variar
+        data: {
+            labels: ['Doce de Leite', 'Queijo', 'Presunto', 'Pão de Mel', 'Chimarrão'],
+            datasets: [{
+                label: 'Quantidade Vendida',
+                data: [10, 5, 3, 2, 1],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(153, 102, 255, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: { size: 14, family: 'Arial' },
+                        color: '#555'
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Produtos Menos Vendidos',
+                    font: { size: 20, weight: 'bold', family: 'Arial' },
+                    color: '#333'
+                }
+            }
+        }
+    });
+</script>
+    <script src="../JS/admin.js"></script>
+</body>
+</html>

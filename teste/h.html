@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrastar e Soltar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8e9d4;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .box {
+            min-width: 300px;
+            background-color: #c1272d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            border-radius: 8px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .box.drag-over {
+            background-color: #a10d1b;
+        }
+
+        .mains {
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #c1272d;
+            color: white;
+        }
+
+        .status {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .kg {
+            background-color: #007bff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .pcte {
+            background-color: #28a745;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .uni {
+            background-color: #ffc107;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="box1" draggable="true">
+            Principal
+        </div>
+        <div class="box" id="box2" draggable="true"></div>
+    </div>
+
+    <template id="tableTemplate">
+        <div class="mains">
+            <section class="table_header">
+                <h1>Produtos Do Sabor Eterno</h1>
+            </section>
+            <section class="table_body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome do Produto</th>
+                            <th>Descrição do Produto</th>
+                            <th>Quantidade Mínima</th>
+                            <th>Valor do Produto</th>
+                            <th>Unidade de Fornecimento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>Bacon / Costela / Lombo</td>
+                            <td>Defumados</td>
+                            <td>5,000</td>
+                            <td><strong>R$49,90</strong></td>
+                            <td><h4 class="status kg">KG</h4></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Salsisha Viena</td>
+                            <td>Embutidos</td>
+                            <td>6</td>
+                            <td><strong>R$25,00</strong></td>
+                            <td><h4 class="status pcte">PCTE</h4></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>Manteiga</td>
+                            <td>Queijos e Derivados</td>
+                            <td>10</td>
+                            <td><strong>R$32,00</strong></td>
+                            <td><h4 class="status uni">UNI</h4></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </template>
+
+    <script>
+        const box1 = document.getElementById('box1');
+        const box2 = document.getElementById('box2');
+        let draggedBox = null;
+
+        [box1, box2].forEach(box => {
+            box.addEventListener('dragstart', (e) => {
+                draggedBox = e.target;
+            });
+
+            box.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                box.classList.add('drag-over');
+            });
+
+            box.addEventListener('dragleave', () => {
+                box.classList.remove('drag-over');
+            });
+
+            box.addEventListener('drop', (e) => {
+                e.preventDefault();
+                box.classList.remove('drag-over');
+
+                if (draggedBox === box2 && box === box1) {
+                    // Voltando para o quadrado original (esconde a tabela)
+                    box1.innerHTML = 'Principal';
+                    box2.innerHTML = ''; // Limpa o segundo quadrado
+                } else if (draggedBox === box1 && box === box2) {
+                    // Movendo para o segundo quadrado (mostra a tabela)
+                    box2.innerHTML = ''; // Limpa qualquer conteúdo no box2
+                    const template = document.getElementById('tableTemplate').content.cloneNode(true);
+                    box2.appendChild(template);
+
+                    // Esconde o texto do quadrado original
+                    box1.innerHTML = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

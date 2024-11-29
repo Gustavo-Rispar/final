@@ -1,0 +1,50 @@
+ /* <input class="submit" type="submit" name="submit" >
+@media (max-width: 450px) {
+  body{
+    width: 5px;
+  }
+}*/
+ body{
+    background-image: url(../MIDIA/background_sb_02.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+fieldset{
+    background-color:rgb(255, 255, 170);
+    width: 200px;
+    height: 300px;
+    border: 0px;
+  }
+
+  .dov2{
+    text-align: center;
+  }
+  
+  input{
+    width:290px;
+    height:30px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    background-color:rgb(255, 255, 170);
+  }
+  button{
+    background-color: rgba(95, 95, 95, 0.699);
+    width:100px;
+    height: 30px;
+    border: 0px;
+    margin-left: 100px;
+  }
+  
+.submit{
+  background-color: rgba(95, 95, 95, 0.699);
+  width:100px;
+  height: 30px;
+  border: 0px;
+  margin-left: 100px;
+}

@@ -1,0 +1,364 @@
+<?php
+ include_once('config.php');
+ $sql = "SELECT `Nome_Produto`,  `Categoria` ,`Data`,`Nome_deposito` , `Quantidade`, `Tipo_Lancamento` FROM `movimentacao`,`produtos`, `categoria`, `deposito`   WHERE 1;";
+ $result = $conexao->query($sql);
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../CSS/estoques.css">
+    <title>Pag-estoque</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <nav id="sidebar">
+
+        <div id="sidebr_content">
+        
+        <div id="logo">
+            <img src="../MIDIA/Logo_transparente.png" id="flogo" alt="logofoto" >
+            
+            <p id="logo-infos">
+                
+                <span class="item-description">
+                    SABOR ETERNO
+                </span>
+<br>
+                <span class="item-description">
+                    Produtos coloniais
+                </span>
+            
+            </p>
+
+        </div>
+        
+        <ul id="side_items">
+            
+            <li class="side-item ">
+
+                <a href="#">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span class="item-description">
+                        Home
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li class="side-item ">
+
+                <a href="#">
+
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <span class="item-description">
+                        Funcionarios
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li class="side-item ">
+
+                <a href="#">
+
+                    <i class="fa-solid fa-tags"></i>
+
+                    <span class="item-description">
+                        Produtos
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li class="side-item active">
+
+                <a href="#">
+
+                    <i class="fa-solid fa-server"></i>
+
+                    <span class="item-description">
+                        Estoques
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li class="side-item">
+
+                <a href="#">
+
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                    <span class="item-description">
+                        Manutenções
+                    </span>
+
+                </a>
+
+            </li>
+            
+            
+            <li class="side-item">
+
+                <a href="#">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span class="item-description">
+                        Configurações
+                    </span>
+
+                </a>
+
+            </li>
+
+        </ul>
+
+        <button id="open_btn">
+            <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+        </button>
+        </div>
+
+        <div id="logout">
+            <button id="logout_btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span class="item-description">
+                    logout
+                </span>
+            </button>
+        </div>
+
+    </nav>
+
+    <main class="resto">
+        <!--estoque-->
+        <div class="container">
+        <div class="box" id="box1">
+            <button class="button" draggable="true" data-table="principal">Principal</button>
+            <button class="button" draggable="true" data-table="vermelho">Vermelho</button>
+            <button class="button" draggable="true" data-table="prata">Prata</button>
+            <button class="button" draggable="true" data-table="bicudo">Bicudo</button>
+            <button class="button" draggable="true" data-table="entrega">Entrega</button>
+        </div>
+        <div class="box" id="box2"></div>
+    </div>
+
+    <template id="principal">
+        <div class="table-container">
+            <div class="table-title">Tabela Principal</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome do  Produtoso</th>
+                        <th>Categoria</th>
+                        <th>Data de lansamento</th>
+                        <th></th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row["Nome_Produto"] . "</td>";
+                                echo "<td>" . $row["Categoria"] . "</td>";
+                                echo "<td>" . $row["Data"] . "</td>";
+                                echo "<td>" . $row["Nome_deposito"] . "</td>";
+                                echo "<td>" . $row["Quantidade"] . "</td>";
+                                echo "<td>". $row["Tipo_Lancamento"] . "</td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="vermelho">
+        <div class="table-container">
+            <div class="table-title">Tabela Vermelho</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Produto</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>002</td>
+                        <td>Produto Vermelho</td>
+                        <td>R$25,00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="prata">
+        <div class="table-container">
+            <div class="table-title">Tabela Prata</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Categoria</th>
+                        <th>Unidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>003</td>
+                        <td>Prata</td>
+                        <td>UNI</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="bicudo">
+        <div class="table-container">
+            <div class="table-title">Tabela Bicudo</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>004</td>
+                        <td>Produto Bicudo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="entrega">
+        <div class="table-container">
+            <div class="table-title">Tabela Entrega</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ordem</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>005</td>
+                        <td>Entregue</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <script>
+        const box1 = document.getElementById('box1');
+        const box2 = document.getElementById('box2');
+        let draggedButton = null;
+
+        // Eventos de arrastar nos botões
+        document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('dragstart', (e) => {
+                draggedButton = e.target;
+            });
+        });
+
+        // Função para processar drop no box2
+        box2.addEventListener('dragover', (e) => e.preventDefault());
+        box2.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if (draggedButton && draggedButton.parentNode === box1) {
+                const tableId = draggedButton.getAttribute('data-table');
+                const template = document.getElementById(tableId);
+                if (template) {
+                    box2.appendChild(template.content.cloneNode(true));
+                    draggedButton.remove();
+                }
+            }
+        });
+
+        // Função para permitir voltar para box1
+        box1.addEventListener('dragover', (e) => e.preventDefault());
+        box1.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if (draggedButton && draggedButton.parentNode !== box1) {
+                box2.innerHTML = '';
+                box1.appendChild(draggedButton);
+            }
+        });
+    </script>
+       <div class="forma">
+        <form id="estoque-form">
+            <label for="deposito">Depósito Retirado:</label>
+            <select id="deposito" name="deposito">
+                <option value="Principal">Principal</option>
+                <option value="Vermelho">Vermelho</option>
+                <option value="Prata">Prata</option>
+                <option value="Bicudo">Bicudo</option>
+                <option value="Entrega">Entrega</option>
+            </select>
+            <br><br>
+            <label for="produto">Nome do Produto:</label>
+            <input type="text" id="produto" name="produto" placeholder="Digite o nome do produto">
+            <br><br>
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" placeholder="Digite a quantidade">
+            <br><br>
+            <label for="lancamento">Lançamento:</label>
+            <select id="lancamento" name="lancamento" onchange="mostrarComboDeposito()">
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+                <option value="transferir">Transferir</option>
+            </select>
+            <br><br>
+            <div id="transferencia-opcoes" style="display: none;">
+                <label for="deposito-transferencia">Depósito Adicionado:</label>
+                <select id="deposito-transferencia" name="deposito-transferencia">
+                    <option value="Principal">Principal</option>
+                    <option value="Vermelho">Vermelho</option>
+                    <option value="Prata">Prata</option>
+                    <option value="Bicudo">Bicudo</option>
+                    <option value="Entrega">Entrega</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</main>
+
+<script>
+    function mostrarComboDeposito() {
+        const lancamento = document.getElementById('lancamento').value;
+        const transferenciaOpcoes = document.getElementById('transferencia-opcoes');
+        if (lancamento === 'transferir') {
+            transferenciaOpcoes.style.display = 'block';
+        } else {
+            transferenciaOpcoes.style.display = 'none';
+        }
+    }
+</script>
+    <script src="../JS/estoques.js"></script>
+</body>
+</html>
